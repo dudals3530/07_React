@@ -1,24 +1,43 @@
 import { api } from "./api";
 
 export const todoApi = {
-  getTodoList: async () => {
+
+  /*
+    Todo 관련 API 호출 함수들 !
+    - 서버와의 모든 통신을 담당! 
+    - 각 함수는 특정 기능을 수행
+  
+  */
+
+
+
     // 투두 리스트 조회
+    // GET/ajax/selectList
+  getTodoList: async () => {
+    
     const response = await api.get("/selectList");
-    return response.data;
+    return response.data; // 서버에서 받은 할일 배열
   },
 
+
+
+  // 투두 추가
+  // POST/ajax/add
   addTodo: async (todo) => {
-    // 투두 추가
+    
     const todoForServer = {
-      ...todo,
+      ...todo,  // 기존 데이터 복사
       complete: "N", // 추가할떄 완료상태 는 N 으로 추가
     };
     const response = await api.post("/add", todoForServer);
-    return response.data;
+    return response.data; // 성공시 1 , 실패시 0
   },
 
+
+  // 완료여부 변경
+  // PUT/ajax/changeComplete
   toggleComplete: async (todo) => {
-    // 완료여부 변경
+    
     const updatedTodo = {
       ...todo,
       complete: todo.complete === "Y" ? "N" : "Y",

@@ -16,6 +16,8 @@ const Home = () => {
     loadTodos();
   }, []); // 빈배열로 하고 페이지 로드될때 할일 목록 가져오기
 
+  useEffect(() => {}, [todos]);
+
   // 할일 목록 불러오기
   const loadTodos = async () => {
     try {
